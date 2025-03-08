@@ -55,4 +55,10 @@ result=netflix%>% filter(type=='TV Show')%>%
   mutate(duration_seasons=as.numeric(gsub(' Season[s]?', '', duration)))
   arrange(duration_seasons)
 
+  #문제 11: type 열을 기준으로 데이터를 그룹화하고,
+  #각 그룹에 대해 콘텐츠의 총 개수와 평균 release_year를 계산하세요.
+  #결과 데이터프레임은 type, total_count, average_release_year 열을 포함해야 합니다.
+  result=netflix%>% group_by(type)%>%
+    summarise(total_count=n(), average_release_year=mean(release_year, na.rm=TRUE))
+  
 
